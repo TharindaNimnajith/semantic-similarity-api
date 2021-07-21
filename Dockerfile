@@ -36,4 +36,4 @@ EXPOSE 80
 
 COPY . ./app
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", $PORT]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", $PORT]
