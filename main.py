@@ -54,3 +54,10 @@ async def root():
           response_description='Successful Response')
 async def evaluate_answer(answers: Answer):
     return evaluate(answers)
+
+
+# running the application on a local development server
+if __name__ == '__main__':
+    uvicorn.run(app,
+                host='127.0.0.1',
+                port=8000)
