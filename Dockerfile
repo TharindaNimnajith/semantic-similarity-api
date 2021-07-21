@@ -1,7 +1,7 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:3.8-slim-buster
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
-EXPOSE 8000
+EXPOSE 80
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -18,9 +18,8 @@ COPY . /app
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
-USER appuser
+# RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+# USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-# CMD ["gunicorn", "main:app"]
-CMD ["gunicorn", "main:app", "--host", "0.0.0.0", "--port", $PORT]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", $PORT]
