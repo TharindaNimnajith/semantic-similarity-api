@@ -1,6 +1,6 @@
-from .semantic_similarity.dandelion_analytics import semantic_similarity
-from .spelling_grammar import spelling_grammar_grammarbot
-from .textblob_sentiment import textblob_sentiment
+from semantic_similarity.dandelion_analytics import semantic_similarity
+from spelling_grammar import spelling_grammar_grammarbot
+from textblob_sentiment import textblob_sentiment
 
 
 def evaluate(answers):

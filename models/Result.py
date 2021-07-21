@@ -2,9 +2,9 @@ from typing import Any
 
 from pydantic import BaseModel
 
-from . import Answer
-from . import Score
-from . import Sentiment
+import Answer
+import Score
+import Sentiment
 
 
 class Result(BaseModel):
