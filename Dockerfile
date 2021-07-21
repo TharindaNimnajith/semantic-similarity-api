@@ -23,4 +23,4 @@ USER appuser
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 # CMD ["gunicorn", "main:app"]
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", $PORT]
+CMD ["gunicorn", "main:app", "--host", "0.0.0.0", "--port", $PORT]
