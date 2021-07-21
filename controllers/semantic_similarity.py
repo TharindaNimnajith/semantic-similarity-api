@@ -1,6 +1,6 @@
 import requests
 
-from ..utility.config import secrets
+from .util import secrets
 
 endpoint = secrets.dandelion_endpoint
 token = secrets.dandelion_token
