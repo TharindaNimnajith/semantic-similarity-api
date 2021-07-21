@@ -32,6 +32,8 @@ RUN python -m pip install -r requirements.txt
 
 RUN pip install fastapi uvicorn
 
+ENV PYTHONPATH=/app
+
 EXPOSE 80
 
 COPY . ./app
