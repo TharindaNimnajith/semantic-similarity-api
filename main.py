@@ -20,7 +20,9 @@ app = FastAPI(title='Semantic Similarity API',
               root_path_in_servers=True,
               include_in_schema=True)
 
-origins = ['*']
+origins = [
+    'https://localhost:5001'
+]
 
 app.add_middleware(
     CORSMiddleware,
