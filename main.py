@@ -1,11 +1,29 @@
 import uvicorn
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
+from starlette.middleware import Middleware
+from starlette.middleware.cors import CORSMiddleware
 
 from controllers.main_controller import evaluate
 from models.Answer import Answer
 from models.Result import Result
+
+origins = [
+    'https://localhost:5001'
+]
+
+methods = [
+    'POST'
+]
+
+headers = [
+    '*'
+]
+
+middleware = [
+    Middleware(CORSMiddleware,
+               allow_origins=origins)
+]
 
 app = FastAPI(title='Semantic Similarity API',
               description='Semantic Similarity API',
@@ -18,29 +36,8 @@ app = FastAPI(title='Semantic Similarity API',
               openapi_prefix='',
               root_path='',
               root_path_in_servers=True,
-              include_in_schema=True)
-
-origins = [
-    'https://localhost:5001'
-]
-
-methods = [
-    'POST',
-    'PUT',
-    'DELETE'
-]
-
-headers = [
-    '*'
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=origins,
-    allow_methods=methods,
-    allow_headers=headers,
-)
+              include_in_schema=True,
+              middleware=middleware)
 
 
 @app.get('/',
