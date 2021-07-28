@@ -1,12 +1,12 @@
 from grammarbot import GrammarBotClient
 
-from .util.text_preprocessing import preprocess_text_basic
+from .util import text_preprocessing
 
 client = GrammarBotClient()
 
 
 def evaluate(text):
-    text = preprocess_text_basic(text)
+    text = text_preprocessing.preprocess_text_basic(text)
     try:
         res = client.check(text)
         matches = res.raw_json.get('matches')
