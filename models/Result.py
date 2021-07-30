@@ -9,7 +9,9 @@ from . import Sentiment
 
 class Result(BaseModel):
     answers: Answer.Answer
-    overall: int
-    scores: Score.Score
     sentiment: Sentiment.Sentiment
     matches: Any
+    scores: Score.Score
+    overall: int
+    ratio: str
+    suggestion: str

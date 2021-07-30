@@ -4,7 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from starlette.middleware import Middleware
 
-from controllers.main_controller import evaluate
+from controllers import main_controller_paraphrasing
+from controllers import main_controller_summarization
 from models.Answer import Answer
 from models.Result import Result
 
@@ -42,18 +43,39 @@ async def root():
     return RedirectResponse(url='/docs')
 
 
-@app.post('/semantic-similarity/',
-          tags=['semantic-similarity'],
+@app.post('/semantic-similarity/paraphrasing',
+          tags=[
+              'semantic-similarity',
+              'paraphrasing'
+          ],
           response_model=Result,
           status_code=200,
-          summary='Student Answer Evaluation',
-          description='Evaluating student answers and returning scores for each criterion.',
+          summary='Student Answer Evaluation for Paraphrasing',
+          description='Evaluating student answers for paraphrasing activities and returning scores for each'
+                      ' criterion with a comprehensive feedback.',
           response_description='Successful Response')
 async def evaluate_answer(answers: Answer):
-    return evaluate(answers)
+    return main_controller_paraphrasing.evaluate(answers)
+
+
+@app.post('/semantic-similarity/summarization',
+          tags=[
+              'semantic-similarity',
+              'summarization'
+          ],
+          response_model=Result,
+          status_code=200,
+          summary='Student Answer Evaluation for Summarization',
+          description='Evaluating student answers for summarization activities and returning scores for each'
+                      ' criterion with a comprehensive feedback.',
+          response_description='Successful Response')
+async def evaluate_answer(answers: Answer):
+    return main_controller_summarization.evaluate(answers)
 
 
 if __name__ == '__main__':
-    uvicorn.run(app,
+    uvicorn.run('main:app',
                 host='127.0.0.1',
-                port=8000)
+                port=8000,
+                reload=True,
+                access_log=False)

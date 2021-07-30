@@ -8,13 +8,18 @@ token_1 = secrets.dandelion_token_1
 token_2 = secrets.dandelion_token_2
 
 
-def get_similarity(model_answer, student_answer):
+def get_similarity(model_answer,
+                   student_answer):
     try:
-        response = get_semantic_similarity(model_answer, student_answer, token_1)
+        response = get_semantic_similarity(model_answer,
+                                           student_answer,
+                                           token_1)
         if response != -1:
             if 'similarity' in response:
                 return response['similarity']
-        response = get_semantic_similarity(model_answer, student_answer, token_2)
+        response = get_semantic_similarity(model_answer,
+                                           student_answer,
+                                           token_2)
         if response != -1:
             if 'similarity' in response:
                 return response['similarity']
@@ -25,7 +30,10 @@ def get_similarity(model_answer, student_answer):
         return 0
 
 
-def get_semantic_similarity(model_answer, student_answer, token, lang='en'):
+def get_semantic_similarity(model_answer,
+                            student_answer,
+                            token,
+                            lang='en'):
     payload = {
         'token': token,
         'text1': model_answer,
@@ -41,7 +49,10 @@ def get_semantic_similarity(model_answer, student_answer, token, lang='en'):
         return -1
 
 
-def get_syntactic_similarity(model_answer, student_answer, token, lang='en'):
+def get_syntactic_similarity(model_answer,
+                             student_answer,
+                             token,
+                             lang='en'):
     payload = {
         'token': token,
         'text1': model_answer,
