@@ -48,8 +48,8 @@ async def root():
           response_model=Result,
           status_code=200,
           summary='Student Answer Evaluation for Paraphrasing',
-          description='Evaluating student answers for paraphrasing activities and returning scores for each'
-                      ' criterion with a comprehensive feedback.',
+          description='Evaluating student answers for paraphrasing activities and returning scores for each '
+                      'criterion with a comprehensive feedback.',
           response_description='Successful Response')
 async def evaluate_answer(answers: Answer):
     return main_controller_paraphrasing.evaluate(answers)
@@ -60,8 +60,8 @@ async def evaluate_answer(answers: Answer):
           response_model=Result,
           status_code=200,
           summary='Student Answer Evaluation for Summarization',
-          description='Evaluating student answers for summarization activities and returning scores for each'
-                      ' criterion with a comprehensive feedback.',
+          description='Evaluating student answers for summarization activities and returning scores for each '
+                      'criterion with a comprehensive feedback.',
           response_description='Successful Response')
 async def evaluate_answer(answers: Answer):
     return main_controller_summarization.evaluate(answers)
