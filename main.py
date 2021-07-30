@@ -44,10 +44,7 @@ async def root():
 
 
 @app.post('/semantic-similarity/paraphrasing',
-          tags=[
-              'semantic-similarity',
-              'paraphrasing'
-          ],
+          tags=['semantic-similarity'],
           response_model=Result,
           status_code=200,
           summary='Student Answer Evaluation for Paraphrasing',
@@ -59,10 +56,7 @@ async def evaluate_answer(answers: Answer):
 
 
 @app.post('/semantic-similarity/summarization',
-          tags=[
-              'semantic-similarity',
-              'summarization'
-          ],
+          tags=['semantic-similarity'],
           response_model=Result,
           status_code=200,
           summary='Student Answer Evaluation for Summarization',
