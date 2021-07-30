@@ -13,5 +13,5 @@ class Result(BaseModel):
     matches: Any
     scores: Score.Score
     overall: int
-    ratio: str
+    ratio: float
     suggestion: str
