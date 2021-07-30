@@ -43,7 +43,7 @@ async def root():
     return RedirectResponse(url='/docs')
 
 
-@app.post('/semantic-similarity/paraphrasing',
+@app.post('/paraphrasing',
           tags=['semantic-similarity'],
           response_model=Result,
           status_code=200,
@@ -55,7 +55,7 @@ async def evaluate_answer(answers: Answer):
     return main_controller_paraphrasing.evaluate(answers)
 
 
-@app.post('/semantic-similarity/summarization',
+@app.post('/summarization',
           tags=['semantic-similarity'],
           response_model=Result,
           status_code=200,
