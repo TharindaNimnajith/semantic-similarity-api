@@ -43,13 +43,13 @@ def evaluate(answers):
         },
         'matches': matches,
         'scores': {
-            'spelling': round(spelling_score),
-            'grammar': round(grammar_score),
-            'similarity': round(similarity_score),
-            'comprehensiveness': round(comprehensiveness_score),
-            'objectivity': round(objectivity_score)
+            'spelling': spelling_score,
+            'grammar': grammar_score,
+            'similarity': similarity_score,
+            'comprehensiveness': comprehensiveness_score,
+            'objectivity': objectivity_score
         },
-        'overall': round(overall_score),
+        'overall': overall_score,
         'ratio': ratio,
         'suggestion': suggestion
     }
