@@ -49,7 +49,7 @@ def evaluate(answers):
             'comprehensiveness': comprehensiveness_score,
             'objectivity': objectivity_score
         },
-        'overall': overall_score,
+        'overall': round(overall_score),
         'ratio': ratio,
         'suggestion': suggestion
     }
