@@ -16,6 +16,12 @@ def evaluate(answers):
                                                           answers.model_answer) * 10
     comprehensiveness_score = basic_metrics.get_comprehensiveness(answers.word_limit,
                                                                   answers.word_count)
+    spelling_score, grammar_score, similarity_score, objectivity_score, comprehensiveness_score = \
+        paraphrasing_evaluation.finalize_marks(spelling_score,
+                                               grammar_score,
+                                               similarity_score,
+                                               objectivity_score,
+                                               comprehensiveness_score)
     overall_score = paraphrasing_evaluation.calculate_overall_score(status,
                                                                     spelling_score,
                                                                     grammar_score,

@@ -8,7 +8,29 @@ def check_rule_violated(question_text,
     ratio = SequenceMatcher(None,
                             question_text,
                             answer_text).ratio()
-    return ratio, ratio > 0.8
+    return ratio, ratio > 0.75
+
+
+def finalize_marks(spelling_score,
+                   grammar_score,
+                   similarity_score,
+                   objectivity_score,
+                   comprehensiveness_score):
+    if spelling_score < 3 and comprehensiveness_score < 3:
+        similarity_score = similarity_score * 0.2 + comprehensiveness_score * 0.8
+        objectivity_score = objectivity_score * 0.2 + comprehensiveness_score * 0.8
+        return spelling_score, grammar_score, similarity_score, objectivity_score, comprehensiveness_score
+    if comprehensiveness_score < 3:
+        spelling_score = spelling_score * 0.2 + comprehensiveness_score * 0.8
+        grammar_score = grammar_score * 0.2 + comprehensiveness_score * 0.8
+        similarity_score = similarity_score * 0.2 + comprehensiveness_score * 0.8
+        objectivity_score = objectivity_score * 0.2 + comprehensiveness_score * 0.8
+        return spelling_score, grammar_score, similarity_score, objectivity_score, comprehensiveness_score
+    if spelling_score < 3:
+        similarity_score = similarity_score * 0.2 + spelling_score * 0.8
+        objectivity_score = objectivity_score * 0.2 + spelling_score * 0.8
+        return spelling_score, grammar_score, similarity_score, objectivity_score, comprehensiveness_score
+    return spelling_score, grammar_score, similarity_score, objectivity_score, comprehensiveness_score
 
 
 def calculate_overall_score(status,
@@ -20,10 +42,10 @@ def calculate_overall_score(status,
     if status:
         overall_score = 2
     else:
-        overall_score = (spelling_score * 15 +
-                         grammar_score * 20 +
-                         similarity_score * 35 +
-                         comprehensiveness_score * 25 +
+        overall_score = (spelling_score * 10 +
+                         grammar_score * 15 +
+                         similarity_score * 50 +
+                         comprehensiveness_score * 20 +
                          objectivity_score * 5) / 100
     return overall_score
 

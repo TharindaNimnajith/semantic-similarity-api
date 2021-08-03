@@ -38,5 +38,14 @@ def get_score(matches,
             grammar_score = (length - grammar_mistakes_count) * 7 / length
         else:
             grammar_score = 0
-    grammar_score = grammar_score * 0.7 + spelling_score * 0.3
+    if spelling_score > 5:
+        grammar_score = grammar_score * 0.7 + spelling_score * 0.3
+    elif spelling_score > 3.5:
+        grammar_score = grammar_score * 0.4 + spelling_score * 0.6
+    elif spelling_score < 2:
+        grammar_score = grammar_score * 0.2 + spelling_score * 0.8
+    elif spelling_score < 0.5:
+        grammar_score = grammar_score * 0.1 + spelling_score * 0.9
+    else:
+        grammar_score = 0
     return spelling_score, grammar_score
